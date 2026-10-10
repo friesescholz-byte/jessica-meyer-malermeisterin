@@ -28,3 +28,7 @@ __pycache__/
 *.pyc
 *upload*
 get_images.py
+
+.env
+.env.*
+!.env.example

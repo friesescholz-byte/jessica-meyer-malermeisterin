@@ -10,7 +10,23 @@
 
   body {
     background-color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
+
+  /* Headlines & Überschriften: Outfit mit Fallback Plus Jakarta Sans */
+  h1, h2, h3, h4, h5, h6, .font-headline {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+    overflow: visible;
+  }
+}
+
+/* Verhindert jegliches Abschneiden von Unterlängen (g, y, j, p, q) bei Text-Gradients */
+.bg-clip-text {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  display: inline-block;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
 }
 
 /* Custom scrollbar */

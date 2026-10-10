@@ -28,19 +28,27 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="py-24 md:py-32 bg-[#FFFFFF] border-t border-slate-200">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
+    <section className="py-24 md:py-36 bg-[#FFFFFF] relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-[12px] font-bold tracking-[0.2em] text-blue-700 uppercase">
-            Häufige Fragen
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#0F294A] mt-3 leading-tight">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-20">
+          <div className="flex items-center justify-center space-x-2.5 mb-4">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0084C7]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48]" />
+            <span className="text-[12.5px] font-headline font-bold tracking-widest text-[#0084C7] uppercase ml-1">
+              Häufige Fragen
+            </span>
+          </div>
+          
+          <h2 className="font-headline text-[2.1rem] xs:text-3xl sm:text-5xl md:text-5xl font-extrabold tracking-[-0.02em] text-[#171815] leading-[1.2] pb-1.5">
             Transparente Antworten vor Projektstart.
           </h2>
-          <p className="text-base text-slate-600 mt-3">
-            Haben Sie weitere Fragen? Wir beraten Sie jederzeit gerne persönlich am Telefon oder direkt vor Ort.
+          
+          <p className="text-base sm:text-lg text-slate-600 mt-3 sm:mt-4 leading-relaxed font-normal">
+            Haben Sie weitere Fragen zu Ablauf, Festpreisen oder Terminen? Ich berate Sie jederzeit gerne persönlich am Telefon oder direkt vor Ort.
           </p>
         </div>
 
@@ -49,15 +57,15 @@ export default function FAQ() {
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
-              <div key={idx} className="py-5 sm:py-6">
+              <div key={idx} className="py-4.5 sm:py-6">
                 <button
                   onClick={() => setOpenIdx(isOpen ? -1 : idx)}
-                  className="w-full flex items-center justify-between text-left group focus:outline-none"
+                  className="w-full flex items-center justify-between text-left group focus:outline-none cursor-pointer"
                 >
-                  <span className="text-base sm:text-lg font-bold text-[#0F294A] group-hover:text-blue-800 transition-colors pr-6">
+                  <span className="text-base sm:text-lg font-bold text-[#0F294A] group-hover:text-blue-800 transition-colors pr-4 sm:pr-6">
                     {faq.q}
                   </span>
-                  <div className={`p-1.5 rounded-md bg-slate-100 text-blue-700 transition-transform duration-300 ${
+                  <div className={`p-1.5 rounded-md bg-slate-100 text-blue-700 transition-transform duration-300 shrink-0 ${
                     isOpen ? 'rotate-180 bg-blue-100' : ''
                   }`}>
                     <ChevronDown className="w-4 h-4" strokeWidth={2} />
@@ -65,7 +73,7 @@ export default function FAQ() {
                 </button>
 
                 {isOpen && (
-                  <div className="mt-4 pr-12 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  <div className="mt-3 sm:mt-4 pr-2 sm:pr-12 text-sm sm:text-base text-slate-600 leading-relaxed">
                     {faq.a}
                   </div>
                 )}

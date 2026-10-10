@@ -27,7 +27,10 @@ export default {
         }
       },
       fontFamily: {
+        headline: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
+        display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
         sans: ['"Plus Jakarta Sans"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
       }
     },
   },
