@@ -7,20 +7,28 @@ const ease = [0.22, 1, 0.36, 1];
 
 const slides = [
   {
-    url: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/hero-fugenloses-bad.webp",
-    alt: "Fugenloses Badezimmer mit Mikrozement Spachteltechnik von Malermeisterin Jessica Meyer"
+    url: "/designtapete-kueche-streifenoptik.webp",
+    alt: "Exklusive Designtapete im modernen Wohn- und Essbereich von Malermeisterin Jessica Meyer"
   },
   {
-    url: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/designtapete-akzentwand.webp",
-    alt: "Exklusive Designtapete und Akzentwandgestaltung"
+    url: "/hero-einsatzfahrzeuge-flotte.webp",
+    alt: "Einsatzfahrzeuge von Malermeisterin Jessica Meyer - Zeit für was Neues!"
   },
   {
-    url: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/airless-spritztechnik-finish.webp",
-    alt: "Airless Spritztechnik Q4 Oberflächenfinish"
+    url: "/hero-wandgestaltung-tuerkis-akzent.webp",
+    alt: "Wandgestaltung und Farbakzent im Dachgeschoss mit Holzbalken"
   },
   {
-    url: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/designbelag-parkett-boden.webp",
-    alt: "Hochwertiger Designbelag und Parkettboden"
+    url: "/hero-fassadenanstrich-holzhaus-blau.webp",
+    alt: "Fassadenanstrich Holzhaus in modernem Schwedenblau mit weißen Akzenten"
+  },
+  {
+    url: "/hero-terrassenueberdachung-holz-weiss.webp",
+    alt: "Professionell lasierte Terrassenüberdachung in strahlendem Weiß"
+  },
+  {
+    url: "/hero-fassadensanierung-geruest-baustelle.webp",
+    alt: "Fassadensanierung und Außenanstrich mit Gerüst und Firmenfahrzeugen"
   }
 ];
 

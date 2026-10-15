@@ -17,7 +17,8 @@ const showcases = [
       "Warm, mineralisch & in individuellen Farbnuancen"
     ],
     ctaText: "Fugenloses Bad anfragen",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/fugenloses-bad-dusche.webp"
+    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/fugenloses-bad-dusche.webp",
+    objectPosition: "object-right"
   },
   {
     id: "airless-technik",
@@ -25,12 +26,13 @@ const showcases = [
     title: "Makellos glatte Oberflächen. Ohne Rollspuren.",
     text: "Mit modernster Airless-Hochdrucktechnik zerstäuben wir Farben und Spachtelmassen spurlos. Das Ergebnis: Vollkommen homogene Decken und Wände in Q3/Q4-Meistergüte.",
     benefits: [
+      "Echtes Baustellenfoto: Airless-Spritzen dunkler Holzdecken",
       "Keine sichtbaren Streifen oder Ansätze bei Streiflicht",
-      "Maximale Zeiteffizienz für Wohnräume und Neubauten",
       "Gleichmäßiger seidenmatter Farbauftrag mit hoher Deckkraft"
     ],
     ctaText: "Airless-Finish anfragen",
-    image: "https://pub-b33108412309406a9a941ddc51e9a5b9.r2.dev/Jessica%20Meyer%20Malermeisterin/airless-spritztechnik-finish.webp"
+    image: "/airless-spritzen-holzdecke-vorher-nachher.webp",
+    objectPosition: "object-right"
   },
   {
     id: "raumkonzepte",
@@ -43,7 +45,8 @@ const showcases = [
       "Wohngesunde, emissionsarme und atmungsaktive Materialien"
     ],
     ctaText: "Wandgestaltung anfragen",
-    image: "/Malermeisterin_Jessica_Meyer_06.webp"
+    image: "/Malermeisterin_Jessica_Meyer_06.webp",
+    objectPosition: "object-right"
   },
   {
     id: "bodenbelaege",
@@ -56,7 +59,8 @@ const showcases = [
       "Nahtlose Übergänge an Sockeln, Türen und Schwellen"
     ],
     ctaText: "Bodenbelag anfragen",
-    image: "/Malermeisterin_Jessica_Meyer_09.webp"
+    image: "/Malermeisterin_Jessica_Meyer_09.webp",
+    objectPosition: "object-right"
   },
   {
     id: "fassadenschutz",
@@ -69,7 +73,8 @@ const showcases = [
       "Wichtiger Hinweis: Kein WDVS / Dämmung – reiner Anstrich & Schutz"
     ],
     ctaText: "Fassadenanstrich anfragen",
-    image: "/Malermeisterin_Jessica_Meyer_03.webp"
+    image: "/Malermeisterin_Jessica_Meyer_03.webp",
+    objectPosition: "object-right"
   },
   {
     id: "malerarbeiten",
@@ -82,7 +87,8 @@ const showcases = [
       "Geruchsneutrale, allergikerfreundliche Markenfarben"
     ],
     ctaText: "Malerarbeiten anfragen",
-    image: "/Malermeisterin_Jessica_Meyer_04.webp"
+    image: "/Malermeisterin_Jessica_Meyer_04.webp",
+    objectPosition: "object-right"
   }
 ];
 
@@ -146,7 +152,7 @@ export default function Showcases() {
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    className="w-full h-full object-cover object-right saturate-[1.3] contrast-[1.05] brightness-[1.02] opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" 
+                    className={`w-full h-full object-cover ${item.objectPosition || 'object-right'} saturate-[1.2] contrast-[1.05] brightness-[1.02] opacity-100 group-hover:scale-105 transition-all duration-700 ease-out`} 
                     loading="lazy"
                   />
                   {/* Sanfter Weißverlauf oben: Oben weicher Übergang ("oben auch so ein weißen farbübergang haben") */}
