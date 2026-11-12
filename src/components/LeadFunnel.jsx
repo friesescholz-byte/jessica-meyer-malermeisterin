@@ -6,26 +6,68 @@ import {
   Clock, 
   CheckCircle2, 
   Navigation, 
-  Check, 
-  ShieldCheck, 
   Mail, 
   User, 
   MessageSquare,
-  Sparkles
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import PainterButton from './PainterButton';
+import TurnstileWidget from './TurnstileWidget';
 
 export default function LeadFunnel() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
-    setSubmitted(true);
+    setErrorMessage("");
+
+    if (!name.trim() || !phone.trim()) {
+      setErrorMessage("Bitte geben Sie Ihren Namen und Ihre Telefonnummer an.");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setErrorMessage("Bitte bestätigen Sie kurz den automatischen Spamschutz (Turnstile).");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://friesescholzwebdesign.pages.dev/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "jessica-meyer-malermeisterin",
+          turnstileToken,
+          name: name.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
+          message: message.trim()
+        })
+      });
+
+      const resData = await response.json();
+
+      if (!response.ok || !resData.success) {
+        throw new Error(resData.message || "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder rufen Sie direkt an.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Form submit error:", err);
+      setErrorMessage(err.message || "Verbindungsfehler beim Absenden. Bitte rufen Sie mich direkt an.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,7 +103,7 @@ export default function LeadFunnel() {
             </p>
 
             {/* Stilvolle, ruhige Kontaktleiste */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs space-y-4 sm:space-y-5 mb-6 sm:mb-8">
+            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs space-y-4 sm:space-y-5">
               
               {/* Telefon & WhatsApp */}
               <div className="flex items-start space-x-3.5 sm:space-x-4">
@@ -102,7 +144,7 @@ export default function LeadFunnel() {
                     mail@jessica-meyer-malermeisterin.de
                   </a>
                   <span className="text-xs text-slate-400 block mt-0.5">
-                    Antwort in der Regel innerhalb von 24 Stunden
+                    Direkte schriftliche Rückmeldung
                   </span>
                 </div>
               </div>
@@ -129,31 +171,9 @@ export default function LeadFunnel() {
 
             </div>
 
-            {/* 3 klare Zusagen */}
-            <div className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 font-medium">
-              <div className="flex items-center space-x-2.5">
-                <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-3 h-3" strokeWidth={3} />
-                </span>
-                <span>Rückmeldung garantiert innerhalb von 24 Stunden</span>
-              </div>
-              <div className="flex items-center space-x-2.5">
-                <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
-                  <Check className="w-3 h-3" strokeWidth={3} />
-                </span>
-                <span>Transparentes Angebot ohne versteckte Kosten</span>
-              </div>
-              <div className="flex items-center space-x-2.5">
-                <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                  <Check className="w-3 h-3" strokeWidth={3} />
-                </span>
-                <span>Persönliche Betreuung und meisterhafte Ausführung</span>
-              </div>
-            </div>
-
           </div>
 
-          {/* Rechte Spalte: Das saubere, moderne, extrem einfache Formular (7 Spalten) */}
+          {/* Rechte Spalte: Das saubere, moderne, extrem einfache Formular mit Cloudflare Turnstile */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-[0_16px_50px_rgba(0,0,0,0.04)] p-5 sm:p-8 md:p-12 relative">
               
@@ -177,7 +197,7 @@ export default function LeadFunnel() {
                   </h3>
 
                   <p className="text-slate-600 max-w-md mx-auto text-sm sm:text-base leading-relaxed mb-8">
-                    Ich habe Ihre Anfrage erhalten und melde mich <strong className="text-[#171815]">werktags innerhalb von 24 Stunden persönlich</strong> bei Ihnen unter <strong className="text-[#0084C7]">{phone}</strong>.
+                    Ich habe Ihre Anfrage erhalten und melde mich persönlich bei Ihnen unter <strong className="text-[#0084C7]">{phone}</strong>.
                   </p>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 max-w-sm mx-auto text-xs text-slate-700 space-y-1 mb-6">
@@ -186,12 +206,15 @@ export default function LeadFunnel() {
                   </div>
 
                   <button
+                    type="button"
                     onClick={() => {
                       setSubmitted(false);
                       setName("");
                       setPhone("");
                       setEmail("");
                       setMessage("");
+                      setTurnstileToken("");
+                      setErrorMessage("");
                     }}
                     className="text-xs font-semibold text-slate-500 hover:text-slate-900 underline transition-colors cursor-pointer"
                   >
@@ -216,7 +239,15 @@ export default function LeadFunnel() {
                     </p>
                   </div>
 
-                  {/* Die 3 klaren Felder */}
+                  {/* Fehlermeldung */}
+                  {errorMessage && (
+                    <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs sm:text-sm flex items-start space-x-2.5">
+                      <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
+                  {/* Die Felder */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     
                     {/* Name */}
@@ -239,7 +270,7 @@ export default function LeadFunnel() {
                       </div>
                     </div>
 
-                    {/* Telefon */}
+                    {/* Telefon mit Regex-Schutz */}
                     <div>
                       <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                         Telefonnummer für Rückruf *
@@ -253,7 +284,12 @@ export default function LeadFunnel() {
                           required
                           placeholder="z. B. 0151 12345678" 
                           value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (/^[0-9+\s()/-]*$/.test(val)) {
+                              setPhone(val);
+                            }
+                          }}
                           className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#0084C7] focus:ring-4 focus:ring-[#0084C7]/10 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all"
                         />
                       </div>
@@ -299,20 +335,39 @@ export default function LeadFunnel() {
                     </div>
                   </div>
 
-                  {/* Absende-Button: Sauber, harmonisch & zentriert */}
-                  <div className="pt-2">
+                  {/* Cloudflare Turnstile Spamschutz (nach contact_form_workflow_rules.md) */}
+                  <TurnstileWidget 
+                    onToken={(token) => {
+                      setTurnstileToken(token);
+                      setErrorMessage("");
+                    }}
+                    onExpired={() => setTurnstileToken("")}
+                  />
+
+                  {/* Absende-Button */}
+                  <div className="pt-1">
                     <PainterButton 
                       as="button" 
                       type="submit" 
                       size="default"
-                      icon="right"
-                      className="w-full sm:w-auto px-8 py-3.5 shadow-md hover:shadow-lg justify-center"
+                      icon={isSubmitting ? null : "right"}
+                      disabled={isSubmitting || !turnstileToken}
+                      className={`w-full sm:w-auto px-8 py-3.5 shadow-md hover:shadow-lg justify-center ${
+                        (!turnstileToken || isSubmitting) ? 'opacity-70 cursor-not-allowed' : ''
+                      }`}
                     >
-                      Kostenfreies Angebot anfordern
+                      {isSubmitting ? (
+                        <span className="inline-flex items-center space-x-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Wird gesendet...</span>
+                        </span>
+                      ) : (
+                        'Kostenfreies Angebot anfordern'
+                      )}
                     </PainterButton>
 
                     <p className="mt-3 text-[11px] sm:text-[11.5px] text-slate-400">
-                      100 % unverbindlich · Keine Weitergabe an Dritte · Antwort werktags binnen 24 Stunden
+                      100 % unverbindlich · Keine Weitergabe an Dritte · Geschützt durch Cloudflare Turnstile
                     </p>
                   </div>
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, User, Phone, Mail, MessageSquare, ShieldCheck } from 'lucide-react';
+import { X, CheckCircle2, User, Phone, Mail, MessageSquare, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { useContactModal } from '../context/ContactModalContext';
 import PainterButton from './PainterButton';
+import TurnstileWidget from './TurnstileWidget';
 
 export default function ContactModal() {
   const { isOpen, closeContactModal, presetSubject } = useContactModal();
@@ -11,6 +12,9 @@ export default function ContactModal() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   // Wenn ein vorausgewähltes Thema übergeben wurde (z. B. "Fugenloses Bad")
@@ -37,21 +41,61 @@ export default function ContactModal() {
     }
   }, [isOpen, closeContactModal]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
-    setSubmitted(true);
+    setErrorMessage("");
+
+    if (!name.trim() || !phone.trim()) {
+      setErrorMessage("Bitte geben Sie Ihren Namen und Ihre Telefonnummer an.");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setErrorMessage("Bitte bestätigen Sie kurz den automatischen Spamschutz (Turnstile).");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://friesescholzwebdesign.pages.dev/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "jessica-meyer-malermeisterin",
+          turnstileToken,
+          name: name.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
+          message: message.trim()
+        })
+      });
+
+      const resData = await response.json();
+
+      if (!response.ok || !resData.success) {
+        throw new Error(resData.message || "Es ist ein Fehler aufgetreten. Bitte rufen Sie mich direkt an.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Modal submit error:", err);
+      setErrorMessage(err.message || "Verbindungsfehler. Bitte rufen Sie mich direkt an.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
     closeContactModal();
-    // Nach kurzer Zeit zurücksetzen
     setTimeout(() => {
       setSubmitted(false);
       setName("");
       setPhone("");
       setEmail("");
       setMessage("");
+      setTurnstileToken("");
+      setErrorMessage("");
     }, 300);
   };
 
@@ -76,7 +120,7 @@ export default function ContactModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-lg bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-2xl p-5 sm:p-9 my-auto z-10 overflow-y-auto max-h-[92vh]"
+            className="relative w-full max-w-lg bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-2xl p-5 sm:p-8 my-auto z-10 overflow-y-auto max-h-[92vh]"
           >
             {/* Schließen Button */}
             <button
@@ -102,10 +146,11 @@ export default function ContactModal() {
                 </h3>
 
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                  Ich habe Ihre Anfrage erhalten und melde mich <strong className="text-[#171815]">werktags innerhalb von 24 Stunden persönlich</strong> bei Ihnen unter <strong className="text-[#0084C7]">{phone}</strong>.
+                  Ich habe Ihre Anfrage erhalten und melde mich persönlich bei Ihnen unter <strong className="text-[#0084C7]">{phone}</strong>.
                 </p>
 
                 <button
+                  type="button"
                   onClick={handleClose}
                   className="px-6 py-2.5 rounded-full bg-[#171815] text-white text-xs font-semibold hover:bg-[#0084C7] transition-colors cursor-pointer"
                 >
@@ -113,7 +158,7 @@ export default function ContactModal() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-4.5">
                 
                 {/* Header */}
                 <div>
@@ -135,7 +180,15 @@ export default function ContactModal() {
                   </p>
                 </div>
 
-                {/* Eingabefelder: Einfach, übersichtlich, ohne Schnickschnack */}
+                {/* Fehlermeldung */}
+                {errorMessage && (
+                  <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start space-x-2">
+                    <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
+                {/* Eingabefelder */}
                 <div className="space-y-3 pt-1">
                   
                   {/* Name */}
@@ -158,7 +211,7 @@ export default function ContactModal() {
                     </div>
                   </div>
 
-                  {/* Telefonnummer */}
+                  {/* Telefonnummer mit Regex-Schutz */}
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Telefonnummer für Rückruf *
@@ -172,7 +225,12 @@ export default function ContactModal() {
                         required
                         placeholder="z. B. 0151 12345678" 
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (/^[0-9+\s()/-]*$/.test(val)) {
+                            setPhone(val);
+                          }
+                        }}
                         className="w-full pl-10 pr-4 py-2.5 bg-white rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#0084C7] focus:ring-3 focus:ring-[#0084C7]/10 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all"
                       />
                     </div>
@@ -218,21 +276,40 @@ export default function ContactModal() {
 
                 </div>
 
+                {/* Cloudflare Turnstile */}
+                <TurnstileWidget 
+                  onToken={(token) => {
+                    setTurnstileToken(token);
+                    setErrorMessage("");
+                  }}
+                  onExpired={() => setTurnstileToken("")}
+                />
+
                 {/* Absende-Button */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <PainterButton 
                     as="button" 
                     type="submit" 
                     size="default"
-                    icon="right"
-                    className="w-full justify-center shadow-md hover:shadow-lg"
+                    icon={isSubmitting ? null : "right"}
+                    disabled={isSubmitting || !turnstileToken}
+                    className={`w-full justify-center shadow-md hover:shadow-lg ${
+                      (!turnstileToken || isSubmitting) ? 'opacity-70 cursor-not-allowed' : ''
+                    }`}
                   >
-                    Kostenfreies Angebot anfordern
+                    {isSubmitting ? (
+                      <span className="inline-flex items-center space-x-2">
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Wird gesendet...</span>
+                      </span>
+                    ) : (
+                      'Kostenfreies Angebot anfordern'
+                    )}
                   </PainterButton>
 
-                  <div className="mt-3 flex items-center justify-center space-x-1.5 text-[11px] text-slate-400 text-center">
+                  <div className="mt-2.5 flex items-center justify-center space-x-1.5 text-[11px] text-slate-400 text-center">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>100 % unverbindlich · Antwort werktags binnen 24h</span>
+                    <span>100 % unverbindlich · Geschützt durch Cloudflare Turnstile</span>
                   </div>
                 </div>
 
