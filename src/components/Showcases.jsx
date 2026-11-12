@@ -82,7 +82,7 @@ const showcases = [
     title: "Klassische Malerarbeiten & Deckenanstriche.",
     text: "Vom einzelnen Zimmer bis zum bezugsfertigen Einfamilienhaus: Penibles Abkleben aller Böden, rissefreie Untergründe und lösungsmittelfreie Qualitätsfarben.",
     benefits: [
-      "100 % Chefin persönlich vor Ort auf Ihrer Baustelle",
+      "Persönliche Beratung & verlässliche Ausführung",
       "Rücksichtsvolles, sauberes Arbeiten im bewohnten Zuhause",
       "Geruchsneutrale, allergikerfreundliche Markenfarben"
     ],

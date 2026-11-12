@@ -9,12 +9,12 @@ const pillars = [
   },
   {
     icon: ShieldCheck,
-    title: "Verbindliche Festpreise",
-    desc: "Transparente Kostenaufstellung ohne versteckte Überraschungen"
+    title: "Transparente Angebote",
+    desc: "Ehrliche Empfehlungen & verlässliche Absprachen ohne Fachchinesisch"
   },
   {
     icon: Sparkles,
-    title: "Saubere Baustellen-Garantie",
+    title: "Sorgfältige Ausführung",
     desc: "Staubarmes Schleifen, penibles Abkleben & rücksichtsvolles Arbeiten"
   },
   {

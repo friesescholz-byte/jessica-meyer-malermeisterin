@@ -19,16 +19,8 @@ const slides = [
     alt: "Wandgestaltung und Farbakzent im Dachgeschoss mit Holzbalken"
   },
   {
-    url: "/hero-fassadenanstrich-holzhaus-blau.webp",
-    alt: "Fassadenanstrich Holzhaus in modernem Schwedenblau mit weißen Akzenten"
-  },
-  {
-    url: "/hero-terrassenueberdachung-holz-weiss.webp",
-    alt: "Professionell lasierte Terrassenüberdachung in strahlendem Weiß"
-  },
-  {
-    url: "/hero-fassadensanierung-geruest-baustelle.webp",
-    alt: "Fassadensanierung und Außenanstrich mit Gerüst und Firmenfahrzeugen"
+    url: "/hero-designbelag-vinylboden.webp",
+    alt: "Hochwertig verlegter Designbelag und Vinylboden in natürlicher Holzoptik von Jessica Meyer"
   }
 ];
 
@@ -41,13 +33,13 @@ const customerPromises = [
   },
   {
     color: '#10B981',
-    title: 'Verbindliche Festpreise',
-    desc: 'Transparente Kostenaufstellung ohne versteckte Überraschungen.'
+    title: 'Transparente Beratung',
+    desc: 'Ehrliche Empfehlungen, klare Angebote und verlässliche Absprachen.'
   },
   {
     color: '#F59E0B',
-    title: 'Saubere Baustellen-Garantie',
-    desc: 'Staubarmes Schleifen, penibles Abkleben & rücksichtsvolles Arbeiten.'
+    title: 'Sorgfältiges Arbeiten',
+    desc: 'Penibles Abkleben, staubarmes Schleifen & rücksichtsvolles Vorgehen.'
   },
   {
     color: '#E11D48',
@@ -241,7 +233,7 @@ export default function Hero() {
               </p>
               
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                Ob <strong className="font-bold text-[#171815]">fugenloses Bad</strong>, makellos glatte <strong className="font-bold text-[#171815]">Airless-Wände</strong> oder das <strong className="font-bold text-[#171815]">einzelne Zimmer</strong>: Bei mir steht immer die <strong className="font-bold text-[#0084C7]">Chefin persönlich</strong> auf der Baustelle — sauber, verlässlich und mit echter Leidenschaft.
+                Ob <strong className="font-bold text-[#171815]">fugenloses Bad</strong>, makellos glatte <strong className="font-bold text-[#171815]">Airless-Wände</strong> oder das <strong className="font-bold text-[#171815]">einzelne Zimmer</strong>: Ich begleite Ihr Vorhaben persönlich — verlässlich, mit Herzblut und meisterhafter Sorgfalt.
               </p>
             </div>
           </motion.div>

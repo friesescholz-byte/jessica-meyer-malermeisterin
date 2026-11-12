@@ -48,7 +48,7 @@ export default function FAQ() {
           </h2>
           
           <p className="text-base sm:text-lg text-slate-600 mt-3 sm:mt-4 leading-relaxed font-normal">
-            Haben Sie weitere Fragen zu Ablauf, Festpreisen oder Terminen? Ich berate Sie jederzeit gerne persönlich am Telefon oder direkt vor Ort.
+            Haben Sie weitere Fragen zu Ablauf, Angeboten oder Terminen? Ich berate Sie jederzeit gerne persönlich am Telefon oder direkt vor Ort.
           </p>
         </div>
 

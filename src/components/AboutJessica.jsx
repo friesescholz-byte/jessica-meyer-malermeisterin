@@ -99,34 +99,34 @@ export default function AboutJessica() {
             {/* Authentisches Qualitäts-Motto im Designer-Rahmen */}
             <div className="relative border-l-4 border-[#0084C7] pl-4 sm:pl-5 py-3 sm:py-4 bg-[#FAF8F5] rounded-r-2xl mb-6 sm:mb-8 w-full border border-y-[#EBE6DD] border-r-[#EBE6DD]">
               <p className="font-headline text-base sm:text-xl font-bold italic text-[#171815]">
-                „Man sollte es bei Kunden genau so machen, wie man es zu Hause selber haben möchte.“
+                „Ich mache es bei Ihnen genau so ordentlich, wie ich es mir zu Hause selbst wünschen würde.“
               </p>
               <p className="text-[11px] sm:text-xs font-mono text-slate-500 mt-2 uppercase tracking-wider">
-                — Mein persönliches Handwerker-Versprechen an Sie
+                — Jessica Meyer · Malermeisterin
               </p>
             </div>
 
-            <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-slate-600 leading-relaxed mb-8 sm:mb-10 font-normal">
+            <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-slate-700 leading-relaxed mb-8 sm:mb-10 font-normal">
               <p>
-                Ich bin in der Bautischlerei meiner Eltern aufgewachsen. Schon als Kind habe ich miterlebt, was ehrliche Handwerksarbeit bedeutet: Verantwortung zu übernehmen, mit den eigenen Händen Schönes zu schaffen und Kunden mit verlässlicher Qualität zu begeistern.
+                Handwerk liegt mir einfach im Blut: Ich bin praktisch in der Bautischlerei meiner Eltern großgeworden. Zwischen Hobelspänen und Baustellen habe ich schon früh gelernt, worauf es wirklich ankommt – sauber zu arbeiten, mitzudenken und sein Wort zu halten.
               </p>
               <p>
-                Nach meiner fundierten Ausbildung im regionalen Handwerk und dem erfolgreichen Meisterabschluss 2024 habe ich Anfang 2025 meinen eigenen Malerbetrieb gegründet. Mein Anspruch: Modernste Techniken wie fugenlose Mikrozement-Bäder und Airless-Spritzlackierung mit herzlicher, persönlicher Betreuung zu verbinden.
+                Für mich war schnell klar, dass das Malerhandwerk genau mein Ding ist. Nach der Ausbildung habe ich 2024 meinen Meister gemacht und mich direkt auf eigene Beine gestellt. Ich liebe es, Räumen wieder neues Leben einzuhauchen – ob mit feinen Vliestapeten, moderner Airless-Spritztechnik oder fugenlosen Bädern.
               </p>
-              <p className="font-bold text-[#171815]">
-                Und ganz wichtig: Ich bin nicht nur für Großprojekte da. Auch wenn Sie nur ein einzelnes Zimmer, einen Flur oder eine Akzentwand renovieren möchten, sind Sie bei mir herzlich willkommen!
+              <p className="font-medium text-[#171815]">
+                Was mir besonders am Herzen liegt: Bei mir gibt es kein „Dafür rücken wir gar nicht erst aus“. Ob Sie ein ganzes Haus renovieren oder einfach nur Ihr Flur oder ein einzelnes Zimmer einen frischen Anstrich braucht – ich freue mich auf jedes Vorhaben.
               </p>
             </div>
 
-            {/* 3 Core Guarantees in 3 großzügigen Boxen */}
+            {/* 3 Kernwerte in großzügigen Boxen */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-5 pt-6 sm:pt-8 border-t border-slate-200 w-full">
               <div className="flex flex-col space-y-2 p-4 rounded-xl bg-[#FAF8F5] border border-[#EBE6DD]">
                 <div className="flex items-center space-x-2 text-[#0084C7] font-headline font-bold text-sm">
                   <Shield className="w-4 h-4 text-[#0084C7]" strokeWidth={2.4} />
-                  <span>100% Chefin vor Ort</span>
+                  <span>Persönlicher Kontakt</span>
                 </div>
                 <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
-                  Feste Ansprechpartnerin von der ersten Beratung bis zur Abnahme.
+                  Feste Ansprechpartnerin von der ersten Idee bis zum fertigen Raum.
                 </p>
               </div>
 
@@ -136,17 +136,17 @@ export default function AboutJessica() {
                   <span>Jedes Projekt zählt</span>
                 </div>
                 <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
-                  Vom kleinen Flur bis zum Neubau mit gleicher Meister-Sorgfalt.
+                  Vom kleinen Flur bis zum Neubau mit der gleichen Sorgfalt.
                 </p>
               </div>
 
               <div className="flex flex-col space-y-2 p-4 rounded-xl bg-[#FAF8F5] border border-[#EBE6DD]">
                 <div className="flex items-center space-x-2 text-[#E11D48] font-headline font-bold text-sm">
                   <Sparkles className="w-4 h-4 text-[#E11D48]" strokeWidth={2.4} />
-                  <span>Sauberkeits-Garantie</span>
+                  <span>Sorgfältige Arbeit</span>
                 </div>
                 <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
-                  Penibles Abkleben, staubarmes Schleifen und saubere Übergabe.
+                  Penibles Abkleben, staubarmes Schleifen und sauberes Verlassen.
                 </p>
               </div>
             </div>

@@ -120,19 +120,19 @@ export default function ProblemSection() {
           ))}
         </div>
 
-        {/* Kurze, vertrauensbildende Abschluss-Garantiezeile */}
+        {/* Kurze, vertrauensbildende Abschlusszeile */}
         <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-10 text-xs sm:text-sm font-medium text-slate-700">
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-4 h-4 text-[#10B981] shrink-0" strokeWidth={2.2} />
-            <span>100 % Chefin persönlich vor Ort</span>
+            <span>Persönliche Betreuung von Anfang bis Ende</span>
           </div>
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-4 h-4 text-[#10B981] shrink-0" strokeWidth={2.2} />
-            <span>Verbindliche Festpreis-Garantie</span>
+            <span>Faire, transparente Angebote</span>
           </div>
           <div className="flex items-center space-x-2">
             <CheckCircle className="w-4 h-4 text-[#10B981] shrink-0" strokeWidth={2.2} />
-            <span>Staubarme Schleiftechnik &amp; penibles Abkleben</span>
+            <span>Rücksichtsvolles Arbeiten im bewohnten Zuhause</span>
           </div>
         </div>
 

@@ -78,8 +78,31 @@ export default function LeadFunnel() {
                   >
                     01512 9585277
                   </a>
+                  <span className="text-xs text-slate-500 block mt-0.5">
+                    Mo.–Fr. 8:00 – 15:00 Uhr erreichbar · Gerne auch Fotos per WhatsApp
+                  </span>
+                </div>
+              </div>
+
+              <div className="h-px bg-slate-100 w-full" />
+
+              {/* E-Mail */}
+              <div className="flex items-start space-x-3.5 sm:space-x-4">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-[#0084C7] shrink-0 mt-0.5">
+                  <Mail className="w-5 h-5" strokeWidth={2} />
+                </div>
+                <div>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-500 block uppercase tracking-wider">
+                    E-Mail
+                  </span>
+                  <a 
+                    href="mailto:mail@jessica-meyer-malermeisterin.de" 
+                    className="text-sm sm:text-base font-headline font-bold text-[#171815] hover:text-[#0084C7] transition-colors block mt-0.5 break-all"
+                  >
+                    mail@jessica-meyer-malermeisterin.de
+                  </a>
                   <span className="text-xs text-slate-400 block mt-0.5">
-                    Mo.–Sa. persönlich erreichbar · Gerne auch Fotos per WhatsApp
+                    Antwort in der Regel innerhalb von 24 Stunden
                   </span>
                 </div>
               </div>
@@ -118,13 +141,13 @@ export default function LeadFunnel() {
                 <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
                   <Check className="w-3 h-3" strokeWidth={3} />
                 </span>
-                <span>Verbindliches Festpreis-Angebot ohne versteckte Kosten</span>
+                <span>Transparentes Angebot ohne versteckte Kosten</span>
               </div>
               <div className="flex items-center space-x-2.5">
                 <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
                   <Check className="w-3 h-3" strokeWidth={3} />
                 </span>
-                <span>100 % Chefin persönlich vor Ort auf Ihrer Baustelle</span>
+                <span>Persönliche Betreuung und meisterhafte Ausführung</span>
               </div>
             </div>
 

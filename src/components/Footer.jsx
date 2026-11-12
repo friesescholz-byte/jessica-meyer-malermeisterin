@@ -153,13 +153,13 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2.5">
                 <Mail className="w-4 h-4 text-[#0084C7] shrink-0" />
-                <a href="mailto:info@jessicameyer-malermeisterin.de" className="hover:text-[#0084C7] transition-colors break-all py-0.5">
-                  info@jessicameyer-malermeisterin.de
+                <a href="mailto:mail@jessica-meyer-malermeisterin.de" className="hover:text-[#0084C7] transition-colors break-all py-0.5">
+                  mail@jessica-meyer-malermeisterin.de
                 </a>
               </div>
             </div>
             <div className="pt-2 text-xs text-slate-400">
-              Montag – Samstag: 07:30 bis 18:00 Uhr
+              Montag – Freitag: 08:00 bis 15:00 Uhr
             </div>
           </div>
 

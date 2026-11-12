@@ -157,7 +157,7 @@ export default function LegalModal() {
                     </h3>
                     <p>
                       Telefon: <a href="tel:015129585277" className="text-[#0084C7] font-semibold hover:underline">01512 9585277</a><br />
-                      E-Mail: <a href="mailto:info@jessicameyer-malermeisterin.de" className="text-[#0084C7] font-semibold hover:underline">info@jessicameyer-malermeisterin.de</a>
+                      E-Mail: <a href="mailto:mail@jessica-meyer-malermeisterin.de" className="text-[#0084C7] font-semibold hover:underline">mail@jessica-meyer-malermeisterin.de</a>
                     </p>
                   </div>
 
@@ -238,7 +238,7 @@ export default function LegalModal() {
                       Jessica Meyer · Malermeisterin<br />
                       Glisser Bruch 7, 31604 Raddestorf (Glissen)<br />
                       Telefon: 01512 9585277<br />
-                      E-Mail: info@jessicameyer-malermeisterin.de
+                      E-Mail: mail@jessica-meyer-malermeisterin.de
                     </p>
                   </div>
 
@@ -360,7 +360,7 @@ export default function LegalModal() {
                       Jessica Meyer · Malermeisterin<br />
                       Glisser Bruch 7, 31604 Raddestorf<br />
                       Telefon: <a href="tel:015129585277" className="text-[#0084C7] hover:underline">01512 9585277</a><br />
-                      E-Mail: <a href="mailto:info@jessicameyer-malermeisterin.de" className="text-[#0084C7] hover:underline">info@jessicameyer-malermeisterin.de</a>
+                      E-Mail: <a href="mailto:mail@jessica-meyer-malermeisterin.de" className="text-[#0084C7] hover:underline">mail@jessica-meyer-malermeisterin.de</a>
                     </p>
                   </div>
 

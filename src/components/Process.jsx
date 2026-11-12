@@ -20,7 +20,7 @@ const steps = [
     colorRgb: "16, 185, 129",
     icon: Compass,
     title: "Vor-Ort-Besichtigung & Muster",
-    desc: "Ich prüfe den Untergrund bei Ihnen vor Ort, bringe echte Material- und Farbmuster mit und berate Sie transparent zu den besten Lösungen zum garantierten Festpreis."
+    desc: "Ich prüfe den Untergrund bei Ihnen vor Ort, bringe echte Material- und Farbmuster mit und berate Sie transparent zu den besten Lösungen mit einem fairen, klaren Angebot."
   },
   {
     num: "03",
